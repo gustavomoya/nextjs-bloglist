@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link"
 import { getBlogs } from "../services/blogs";
 
 const blogs = getBlogs()
@@ -8,10 +9,11 @@ export default function Home() {
   return (
     <div>
       <h2>Blogs</h2>
-      <ul>
+      <ul className="mt-5">
         {blogs.map(blog => (
           <li key={blog.id}>
-            {blog.title} by <strong>{blog.author}</strong>
+            <Link className="font-medium text-blue-500 pr-2" href={`/blogs/${blog.id}`}>{blog.title}</Link>
+            by {blog.author}
           </li>
         ))}
       </ul>
