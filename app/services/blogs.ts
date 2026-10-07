@@ -43,3 +43,10 @@ export const addBlog = (title: string, author: string, url: string, likes: numbe
 export const getBlogById = (id: string) => {
   return blogs.find((blog) => blog.id === id)
 }
+
+export const incrLike = (id: string) => {
+  const blog = blogs.find((blog) => blog.id === id)
+  if (blog) {
+     blog.likes += 1
+  }
+}

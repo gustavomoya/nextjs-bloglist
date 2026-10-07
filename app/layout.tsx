@@ -22,7 +22,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
      <html lang="en">
-      <body>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased mx-2`}>
         <nav>
           <Link className="text-blue-500 hover:underline" href="/">home</Link>
           {" | "}

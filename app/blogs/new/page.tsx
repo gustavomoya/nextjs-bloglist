@@ -24,13 +24,7 @@ const addBlog = () => {
                         <input type="text" name="url" required />
                     </label>
                 </div>
-                <div>
-                    <label>
-                        Likes
-                        <input type="number" name="likes" />
-                    </label>
-                </div>
-                <button type="submit" className="rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600">Create</button>
+                <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded mt-2">Create</button>
             </form>
         </div>
     )
