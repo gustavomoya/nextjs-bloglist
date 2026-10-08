@@ -10,14 +10,7 @@ export default async function Home({
 
   const { filter } = await searchParams
 
-  const allBlogs = getBlogs()
-
-  const blogs = filter
-    ? allBlogs.filter((b) => b.title.toLowerCase().includes(filter.toLowerCase()))
-    : allBlogs
-
-
-  blogs.sort((a, b) => b.likes - a.likes)
+  const blogs = await getBlogs(filter)
 
   return (
     <div>
