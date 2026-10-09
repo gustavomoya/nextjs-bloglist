@@ -29,6 +29,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           <Link className="text-blue-500 hover:underline" href="/blogs">blogs</Link>
           {" | "}
           <Link className="text-blue-500 hover:underline" href="/blogs/new">create new</Link>
+          {" | "}
+          <Link className="text-blue-500 hover:underline" href="/users">users</Link>
         </nav>
         {children}
       </body>
