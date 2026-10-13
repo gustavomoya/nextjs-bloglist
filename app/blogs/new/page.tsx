@@ -1,28 +1,32 @@
-import { createBlog } from '../../actions/blogs'
+"use client"
+import { useActionState } from "react"
+import { createBlog } from '@/app/actions/blogs'
+
 
 const addBlog = () => {
+    const initialState = { error: "", values: { title: "", author: "", url: "", } };
+
+    const [state, formAction] = useActionState(createBlog, initialState)
+
     return (
         <div>
             <h2>Create a new blog</h2>
-            <form action={createBlog}>
+            <form action={formAction}>
                 <div>
-                    <label>
-                        Title
-                        <input type="text" name="title" required />
+                    <label htmlFor="title">Title</label>
+                    <input id="title" type="text" name="title" defaultValue={state.values?.title} />
+                    {state.errors?.title && (<p style={{ color: "red" }}> {state.errors.title} </p>)}
+                </div>
 
-                    </label>
+                <div>
+                    <label htmlFor="author">Author</label>
+                    <input id="author" type="text" name="author" defaultValue={state.values?.author} />
+                    {state.errors?.author && (<p style={{ color: "red" }}> {state.errors.author} </p>)}
                 </div>
                 <div>
-                    <label>
-                        Author
-                        <input type="text" name="author" required />
-                    </label>
-                </div>
-                <div>
-                    <label>
-                        Url
-                        <input type="text" name="url" required />
-                    </label>
+                    <label htmlFor="url">Url</label>
+                    <input id="url" type="text" name="url" defaultValue={state.values?.url} />
+                    {state.errors?.url && (<p style={{ color: "red" }}> {state.errors.url} </p>)}
                 </div>
                 <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded mt-2">Create</button>
             </form>
