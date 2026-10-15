@@ -48,7 +48,7 @@ const addUser = () => {
                         Password
                     </label>
                     <input id="password" type="password" name="password" defaultValue={state.values?.password} />
-                    {state.password?.name && (
+                    {state.errors?.password && (
                         <p style={{ color: "red" }}>
                             {state.errors.password}
                         </p>
