@@ -6,14 +6,33 @@ import { db } from "../../db"
 import { users } from "../../db/schema"
 import { getUserByUsername } from '@/app/services/users'
 
-export const registerUser = async (prevState: { error: string, values: { username: string, name: string, password: string, passwordConfirm: string } }, formData: FormData) => {
+type UserValues = {
+  username: string
+  name: string
+  password: string
+  passwordConfirm: string
+}
+
+type UserErrors = {
+  username?: string
+  name?: string
+  password?: string
+  passwordConfirm?: string
+}
+
+export type RegisterUserState = {
+  errors: UserErrors
+  values: UserValues
+}
+
+export const registerUser = async (prevState: RegisterUserState, formData: FormData) : Promise<RegisterUserState> => {
   const username = (formData.get("username") as string)?.trim()
   const name = (formData.get("name") as string)?.trim()
   const password = formData.get("password") as string
   const passwordConfirm = formData.get("passwordConfirm") as string
 
-  const values = { username, name, password, passwordConfirm };
-  const errors = {};
+  const values: UserValues = { username, name, password, passwordConfirm };
+  const errors: UserErrors = {};
 
   if (!username.trim() || username.trim().length < 4) {
     errors.username = "The username must be at least 4 characters long"

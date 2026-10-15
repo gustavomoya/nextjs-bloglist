@@ -1,10 +1,18 @@
 "use client"
 import { useActionState } from "react"
-import { registerUser } from "@/app/actions/users"
+import { registerUser, type RegisterUserState } from "@/app/actions/users"
 
 
-const addBlog = () => {
-    const initialState = { error: "", values: { username: "", name: "", password: "", passwordConfirm: "", } };
+const addUser = () => {
+    const initialState: RegisterUserState = {
+        errors: {},
+        values: {
+            username: "",
+            name: "",
+            password: "",
+            passwordConfirm: "",
+        },
+    }
 
     const [state, formAction] = useActionState(registerUser, initialState)
 
@@ -56,7 +64,6 @@ const addBlog = () => {
                         id="passwordConfirm"
                         name="passwordConfirm"
                         type="password"
-                        required
                         defaultValue={
                             state.values?.passwordConfirm
                         }
@@ -75,4 +82,4 @@ const addBlog = () => {
     )
 }
 
-export default addBlog
+export default addUser

@@ -5,8 +5,25 @@ import { redirect } from "next/navigation"
 import { addBlog, incrLike } from "../services/blogs"
 import { auth } from "@/auth"
 
+type BlogValues = {
+  title: string
+  author: string
+  url: string
+}
 
-export const createBlog = async (prevState: { error: string, values: { title: string, author: string, url: string } }, formData: FormData) => {
+type BlogErrors = {
+  title?: string
+  author?: string
+  url?: string
+}
+
+export type BlogFormState = {
+  errors: BlogErrors
+  values: BlogValues
+}
+
+
+export const createBlog = async (prevState: BlogFormState , formData: FormData): Promise<BlogFormState> => {
   const session = await auth()
   if (!session) {
     redirect("/login")
@@ -17,8 +34,8 @@ export const createBlog = async (prevState: { error: string, values: { title: st
   const url = formData.get("url") as string
   const likes = 0;
 
-  const values = { title, author, url };
-  const errors = {};
+  const values: BlogValues = { title, author, url };
+  const errors: BlogErrors = {}
 
   if (!title.trim() || title.trim().length < 5) {
      errors.title = "The title must be at least 5 characters long"   

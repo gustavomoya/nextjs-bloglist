@@ -1,10 +1,18 @@
 "use client"
 import { useActionState } from "react"
-import { createBlog } from '@/app/actions/blogs'
+import { createBlog, type BlogFormState } from '@/app/actions/blogs'
 
 
 const addBlog = () => {
-    const initialState = { error: "", values: { title: "", author: "", url: "", } };
+    
+    const initialState: BlogFormState = {
+        errors: {},
+        values: {
+            title: "",
+            author: "",
+            url: "",
+        },
+    }
 
     const [state, formAction] = useActionState(createBlog, initialState)
 
