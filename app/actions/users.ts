@@ -22,7 +22,8 @@ type UserErrors = {
 
 export type RegisterUserState = {
   errors: UserErrors
-  values: UserValues
+  values: UserValues,
+  success: boolean
 }
 
 export const registerUser = async (prevState: RegisterUserState, formData: FormData) : Promise<RegisterUserState> => {
@@ -57,12 +58,12 @@ export const registerUser = async (prevState: RegisterUserState, formData: FormD
   }
 
   if (Object.keys(errors).length > 0) {
-    return { errors, values }
+    return { errors, values, success: false }
   }
 
   const passwordHash = await bcrypt.hash(password, 10)
 
   await db.insert(users).values({ username, name, passwordHash })
 
-  redirect("/login")
+  return { errors, values, success: true }
 }
