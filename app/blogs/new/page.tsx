@@ -5,7 +5,7 @@ import { useNotification } from "@/app/components/NotificationContext"
 import { useRouter } from "next/navigation"
 
 
-const addBlog = () => {
+const AddBlog = () => {
 
     const initialState: BlogFormState = {
         errors: {},
@@ -55,4 +55,4 @@ const addBlog = () => {
     )
 }
 
-export default addBlog
+export default AddBlog

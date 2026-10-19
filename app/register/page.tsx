@@ -5,7 +5,7 @@ import { useNotification } from "../components/NotificationContext"
 import { useRouter } from "next/navigation"
 
 
-const addUser = () => {
+const AddUser = () => {
     const initialState: RegisterUserState = {
         errors: {},
         values: {
@@ -95,4 +95,4 @@ const addUser = () => {
     )
 }
 
-export default addUser
+export default AddUser
