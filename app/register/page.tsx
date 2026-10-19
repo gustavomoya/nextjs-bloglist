@@ -31,14 +31,14 @@ const AddUser = () => {
     }, [state, showNotification, router])
 
     return (
-        <div>
-            <h2>Register</h2>
-            <form action={formAction}>
+        <div className="mx-auto w-full max-w-2xl p-6 lg:px-10">
+            <h2 className="text-2xl font-bold mb-4">Register</h2>
+            <form action={formAction} className="space-y-4">
                 <div>
-                    <label htmlFor="username">
+                    <label htmlFor="username" className="block mb-1 font-medium">
                         Username
                     </label>
-                    <input id="username" type="text" name="username" defaultValue={state.values?.username} />
+                    <input id="username" type="text" name="username" defaultValue={state.values?.username} className="mt-1 block w-full border rounded px-3 py-2" />
                     {state.errors?.username && (
                         <p style={{ color: "red" }}>
                             {state.errors.username}
@@ -46,10 +46,10 @@ const AddUser = () => {
                     )}
                 </div>
                 <div>
-                    <label htmlFor="name">
+                    <label htmlFor="name" className="block mb-1 font-medium">
                         Name
                     </label>
-                    <input id="name" type="text" name="name" defaultValue={state.values?.name} />
+                    <input id="name" type="text" name="name" defaultValue={state.values?.name} className="mt-1 block w-full border rounded px-3 py-2" />
                     {state.errors?.name && (
                         <p style={{ color: "red" }}>
                             {state.errors.name}
@@ -57,10 +57,10 @@ const AddUser = () => {
                     )}
                 </div>
                 <div>
-                    <label htmlFor="password">
+                    <label htmlFor="password" className="block mb-1 font-medium">
                         Password
                     </label>
-                    <input id="password" type="password" name="password" defaultValue={state.values?.password} />
+                    <input id="password" type="password" name="password" defaultValue={state.values?.password} className="mt-1 block w-full border rounded px-3 py-2" />
                     {state.errors?.password && (
                         <p style={{ color: "red" }}>
                             {state.errors.password}
@@ -69,7 +69,7 @@ const AddUser = () => {
                 </div>
 
                 <div>
-                    <label htmlFor="passwordConfirm">
+                    <label htmlFor="passwordConfirm" className="block mb-1 font-medium">
                         Confirm password
                     </label>
 
@@ -80,6 +80,7 @@ const AddUser = () => {
                         defaultValue={
                             state.values?.passwordConfirm
                         }
+                        className="mt-1 block w-full border rounded px-3 py-2"
                     />
 
                     {state.errors?.passwordConfirm && (
@@ -89,7 +90,7 @@ const AddUser = () => {
                     )}
                 </div>
 
-                <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded mt-2">Register</button>
+                <button type="submit" className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Register</button>
             </form>
         </div>
     )

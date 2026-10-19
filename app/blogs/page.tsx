@@ -13,9 +13,9 @@ export default async function Home({
   const blogs = await getBlogs(filter)
 
   return (
-    <div>
-      <h2>Blogs</h2>
-      <form method="GET" action="/blogs" className="w-full min-w-0 xl:w-1/6  rounded pt-6">
+    <div className="mx-auto w-full max-w-2xl p-6 lg:px-10">
+      <h2 className="text-2xl font-bold mb-4">Blogs</h2>
+      <form method="GET" action="/blogs" className="w-full max-w-md rounded pt-2">
         <div className="mb-2 flex justify-items-start">
           <input type="text"
             name="filter"
@@ -26,10 +26,10 @@ export default async function Home({
           </button>
         </div>
       </form>
-      <ul className="mt-5">
+      <ul className="mt-5 space-y-2">
         {blogs.map(blog => (
           <li key={blog.id}>
-            <Link className="font-medium text-blue-500 pr-2" href={`/blogs/${blog.id}`}>{blog.title}</Link>
+            <Link className="text-blue-600 hover:underline pr-2" href={`/blogs/${blog.id}`}>{blog.title}</Link>
             by {blog.author}
           </li>
         ))}
