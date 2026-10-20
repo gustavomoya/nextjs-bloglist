@@ -43,6 +43,13 @@
       "when": 1791835275413,
       "tag": "0005_cloudy_anita_blake",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1792502967345,
+      "tag": "0006_gigantic_misty_knight",
+      "breakpoints": true
     }
   ]
 }

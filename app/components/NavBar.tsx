@@ -1,6 +1,5 @@
 "use client"
 
-import Link from "next/link"
 import { useSession, signOut } from "next-auth/react"
 import NavLink from "./NavLink"
 
@@ -17,7 +16,7 @@ export default function NavBar() {
                 {session ? (
                     <>
                         <NavLink href="/blogs/new">create new</NavLink>
-                        <em className="text-gray-300">{session.user?.name} logged in</em>{" "}
+                        <NavLink href="/me"><em className="text-gray-300 underline">me</em></NavLink>
                         <button className="bg-gray-600 hover:bg-gray-500 px-3 py-1 rounded text-sm" onClick={() => signOut()}>logout</button>
                     </>
                 ) : (

@@ -4,7 +4,8 @@ import { redirect } from "next/navigation"
 import bcrypt from "bcryptjs"
 import { db } from "../../db"
 import { users } from "../../db/schema"
-import { getUserByUsername } from '@/app/services/users'
+import { getUserById, getUserByUsername, saveToken } from '@/app/services/users'
+import { revalidatePath } from "next/cache"
 
 type UserValues = {
   username: string
@@ -66,4 +67,14 @@ export const registerUser = async (prevState: RegisterUserState, formData: FormD
   await db.insert(users).values({ username, name, passwordHash })
 
   return { errors, values, success: true }
+}
+
+export const generateToken = async (formData: FormData) : Promise<void> => {
+  const id = formData.get("id");
+  const token = crypto.randomUUID();
+
+  await saveToken(Number(id), token)
+
+  revalidatePath('/me')
+  redirect('/me')
 }
