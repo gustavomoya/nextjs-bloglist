@@ -21,11 +21,40 @@ export const getUserByUsername = async (username: string) => {
     })
 }
 
+export const getUserByToken = async (token: string) => {
+    const user = await db.query.users.findFirst({
+        where: eq(users.token, token),
+        columns: {
+            id: true,
+            username: true,
+            name: true,
+        },
+        with: {
+            blogs: {
+                columns: {
+                    author: true,
+                    title: true,
+                    url: true,
+                },
+            },
+        },
+    });
+
+    if (!user) return null;
+
+    const { blogs, ...userData } = user;
+
+    return {
+        ...userData,
+        createdBlogs: blogs,
+    };
+}
+
 export const saveToken = async (id: number, token: string) => {
-  const user = await getUserById(id)
-  if (user) {
-    await db.update(users)
-      .set({ token: token})
-      .where(eq(users.id, id));
-  }
+    const user = await getUserById(id)
+    if (user) {
+        await db.update(users)
+            .set({ token: token })
+            .where(eq(users.id, id));
+    }
 }
