@@ -13,8 +13,6 @@ export async function DELETE(request: NextRequest) {
 
     try {
 
-        // console.log('removing data')
-
         await db.delete(readingList);
         await db.delete(blogs);
         await db.delete(users);
