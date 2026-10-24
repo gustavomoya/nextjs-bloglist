@@ -1,16 +1,15 @@
-import Link from "next/link"
-import { getBlogs } from "../services/blogs";
+import { Suspense } from "react";
+import BlogListPage from "./BlogList";
+import BlogListSkeleton from "@/app/components/BlogListSkeleton";
 
 
-export default async function Home({
+export default async function BlogPage({
   searchParams,
 }: {
   searchParams: Promise<{ filter?: string }>
 }) {
 
   const { filter } = await searchParams
-
-  const blogs = await getBlogs(filter)
 
   return (
     <div className="mx-auto w-full max-w-2xl p-6 lg:px-10">
@@ -26,14 +25,12 @@ export default async function Home({
           </button>
         </div>
       </form>
-      <ul className="mt-5 space-y-2">
-        {blogs.map(blog => (
-          <li key={blog.id}>
-            <Link className="text-blue-600 hover:underline pr-2" href={`/blogs/${blog.id}`}>{blog.title}</Link>
-            by {blog.author}
-          </li>
-        ))}
-      </ul>
+      <Suspense
+        key={filter ?? ""}
+        fallback={<BlogListSkeleton />}
+      >
+        <BlogListPage filter={filter} />
+      </Suspense>
     </div>
   );
 }
