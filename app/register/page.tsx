@@ -40,7 +40,7 @@ const AddUser = () => {
                     </label>
                     <input id="username" type="text" name="username" defaultValue={state.values?.username} className="mt-1 block w-full border rounded px-3 py-2" />
                     {state.errors?.username && (
-                        <p style={{ color: "red" }}>
+                        <p data-testid="username-error" style={{ color: "red" }}>
                             {state.errors.username}
                         </p>
                     )}
@@ -70,7 +70,7 @@ const AddUser = () => {
 
                 <div>
                     <label htmlFor="passwordConfirm" className="block mb-1 font-medium">
-                        Confirm password
+                        Confirm Password
                     </label>
 
                     <input
@@ -84,13 +84,17 @@ const AddUser = () => {
                     />
 
                     {state.errors?.passwordConfirm && (
-                        <p style={{ color: "red" }}>
+                        <p data-testid="passwordConfirm-error" style={{ color: "red" }}>
                             {state.errors.passwordConfirm}
                         </p>
                     )}
                 </div>
 
-                <button type="submit" className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Register</button>
+                <button type="submit"
+                        data-testid="register-button"
+                        className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+                    Register
+                </button>
             </form>
         </div>
     )

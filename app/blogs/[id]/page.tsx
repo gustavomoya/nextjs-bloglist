@@ -17,9 +17,9 @@ export default async function BlogPage({ params }: { params: Promise<{ id: strin
   }
 
   return (
-    <div className="mx-auto w-full max-w-2xl p-6 lg:px-10">
+    <div data-testid="blog-detail" className="mx-auto w-full max-w-2xl p-6 lg:px-10">
       <h2 className="text-2xl font-bold mb-2">
-        <strong>{blog.title}</strong> by {blog.author}
+          <strong data-testid="blog-title">{blog.title}</strong> by <span data-testid="blog-author">{blog.author}</span>
       </h2>
       <p className="text-gray-500 mb-2"><strong>URL:</strong> {blog.url}</p>
       <p className="text-gray-500 mb-2"><strong>Likes:</strong> {blog.likes}</p>
@@ -34,7 +34,9 @@ export default async function BlogPage({ params }: { params: Promise<{ id: strin
         {!blog.readingList?.length && session?.user?.email && (
           <form action={addReadingList}>
             <input type="hidden" name="id" value={blog.id} />
-            <button type="submit" className="bg-green-500 hover:bg-green-700 text-white py-2 px-4 ml-4 rounded">
+            <button type="submit"
+                    data-testid="add-to-reading-list-button"
+                    className="bg-green-500 hover:bg-green-700 text-white py-2 px-4 ml-4 rounded">
               Add to Reading List
             </button>
           </form>

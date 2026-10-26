@@ -45,11 +45,15 @@ const AddBlog = () => {
                     {state.errors?.author && (<p style={{ color: "red" }}> {state.errors.author} </p>)}
                 </div>
                 <div>
-                    <label htmlFor="url" className="block mb-1 font-medium">Url</label>
+                    <label htmlFor="url" className="block mb-1 font-medium">URL</label>
                     <input id="url" type="text" name="url" defaultValue={state.values?.url} className="mt-1 block w-full border rounded px-3 py-2" />
                     {state.errors?.url && (<p style={{ color: "red" }}> {state.errors.url} </p>)}
                 </div>
-                <button type="submit" className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Create</button>
+                <button type="submit"
+                        data-testid="create-blog-button"
+                        className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+                    Create
+                </button>
             </form>
         </div>
     )

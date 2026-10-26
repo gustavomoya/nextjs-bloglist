@@ -11,7 +11,7 @@ export const markAsReadAction = async (formData: FormData) => {
     }
 
     const itemId = formData.get("id") as string
-    const userId = Number(formData.get("id") as string)
+    const userId = Number(formData.get("user_id") as string)
 
     if (userId != user.id) {
         throw new Error("Invalid action")
