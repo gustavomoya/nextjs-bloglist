@@ -43,7 +43,10 @@ export const getBlogById = async (id: number) => {
   }
 
   return db.query.blogs.findFirst({
-    where: eq(blogs.id, id)
+    where: eq(blogs.id, id),
+    with: {
+      readingList: true,
+    },
   })
 }
 

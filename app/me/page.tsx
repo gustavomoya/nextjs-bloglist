@@ -48,7 +48,7 @@ export default async function ProfilePage() {
                 )}
 
                 {unreadBlogs.length > 0 ? (
-                    <div>
+                    <div data-testid="unread-section">
                         <h4 className="text-lg font-semibold mt-4 mb-2">
                             Unread ({unreadBlogs.length})
                         </h4>
