@@ -6,7 +6,7 @@ test.describe("Blog Application", () => {
     await resetDatabase()
   })
 
-  /*test.describe("Authentication", () => {
+  test.describe("Authentication", () => {
     test("user can register", async ({ page }) => {
       await page.goto("/register")
 
@@ -105,9 +105,9 @@ test.describe("Blog Application", () => {
         page.getByRole("link", { name: "login", exact: true }),
       ).toBeVisible()
     })
-  })*/
+  })
 
-  /*test.describe("Navigation", () => {
+  test.describe("Navigation", () => {
     test("home page can be opened", async ({ page }) => {
       await page.goto("/")
 
@@ -184,9 +184,9 @@ test.describe("Blog Application", () => {
 
       await expect(page).toHaveURL("/users")
     })
-  })*/
+  })
 
-  /*test.describe("Blogs", () => {
+  test.describe("Blogs", () => {
     test.beforeEach(async () => {
       await createUser("testuser", "Test User", "testpass123")
     })
@@ -294,38 +294,37 @@ test.describe("Blog Application", () => {
       const blogsList = page.getByTestId("blogs-list")
       await expect(blogsList).toContainText("0 likes")
     })
-  })*/
+  })
 
   test.describe("Me Page", () => {
     test.beforeEach(async () => {
-      const user = await createUser("testuser", "Test User", "testpass123")
-      console.log("Test user created:", user)
+      await createUser("testuser", "Test User", "testpass123")
     })
 
-    // test("redirects to login if not authenticated", async ({ page }) => {
-    //   await page.goto("/me")
-    //
-    //   // Should redirect to login page
-    //   await expect(page).toHaveURL("/login")
-    // })
-    //
-    // test("shows user profile information", async ({ page }) => {
-    //   await loginUser(page, "testuser", "testpass123")
-    //   await page.goto("/me")
-    //
-    //   // Should show user information
-    //   await expect(page.getByTestId("user-profile")).toBeVisible()
-    //   await expect(page.getByTestId("user-name")).toContainText("Test User")
-    //   await expect(page.getByTestId("user-username")).toContainText("testuser")
-    // })
-    //
-    // test("shows empty reading list message", async ({ page }) => {
-    //   await loginUser(page, "testuser", "testpass123")
-    //   await page.goto("/me")
-    //
-    //   await expect(page.getByTestId("reading-list-section")).toBeVisible()
-    //   await expect(page.getByTestId("empty-reading-list")).toBeVisible()
-    // })
+    test("redirects to login if not authenticated", async ({ page }) => {
+      await page.goto("/me")
+
+      // Should redirect to login page
+      await expect(page).toHaveURL("/login")
+    })
+
+    test("shows user profile information", async ({ page }) => {
+      await loginUser(page, "testuser", "testpass123")
+      await page.goto("/me")
+
+      // Should show user information
+      await expect(page.getByTestId("user-profile")).toBeVisible()
+      await expect(page.getByTestId("user-name")).toContainText("Test User")
+      await expect(page.getByTestId("user-username")).toContainText("testuser")
+    })
+
+    test("shows empty reading list message", async ({ page }) => {
+      await loginUser(page, "testuser", "testpass123")
+      await page.goto("/me")
+
+      await expect(page.getByTestId("reading-list-section")).toBeVisible()
+      await expect(page.getByTestId("empty-reading-list")).toBeVisible()
+    })
 
     test("shows reading list with unread blog", async ({ page }) => {
       // Create another user to own a blog
