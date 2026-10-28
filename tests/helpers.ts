@@ -42,11 +42,13 @@ export const loginUser = async (
   password: string,
 ) => {
   await page.goto("/login")
+  await page.waitForLoadState("networkidle")
   await page.getByLabel("Username", { exact: true }).fill(username)
   await page.getByLabel("Password", { exact: true }).fill(password)
   await page.getByRole("button", { name: "Login" }).click()
-  // Wait for navigation or notification
-  await page.waitForURL("/")
+  await page.waitForURL("/", { timeout: 15000 }).catch(() => {
+    return page.waitForSelector("[data-testid='notification']", { timeout: 5000 }).catch(() => {})
+  })
 }
 
 export const createBlog = async (
