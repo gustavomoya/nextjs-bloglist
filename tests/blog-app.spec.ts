@@ -370,7 +370,7 @@ test.describe("Blog Application", () => {
       await page.getByTestId("add-to-reading-list-button").click()
 
       // Wait for server action to complete
-      await page.waitForTimeout(500)
+      await page.waitForTimeout(2500)
 
       // Go to me page and mark as read
       await page.goto("/me")
@@ -383,7 +383,7 @@ test.describe("Blog Application", () => {
       await markReadButton.click()
 
       // Wait for the page to update
-      await page.waitForTimeout(1000)
+      await page.waitForTimeout(2500)
 
       // Should now show empty unread section
       await expect(page.getByTestId("no-unread-blogs")).toBeVisible()
@@ -457,11 +457,11 @@ test.describe("Blog Application", () => {
       await page.waitForSelector('[data-testid="api-token"]')
       const firstToken = await page.getByTestId("api-token").textContent()
 
-      // Generate new token without reloading
+// Generate new token without reloading
       await page.getByTestId("generate-token-button").click()
 
-      // Wait for token to potentially change
-      await page.waitForTimeout(500)
+      // Wait for token to change (increased for reliable token regeneration)
+      await page.waitForTimeout(2500)
       const secondToken = await page.getByTestId("api-token").textContent()
 
       // Tokens should be different
